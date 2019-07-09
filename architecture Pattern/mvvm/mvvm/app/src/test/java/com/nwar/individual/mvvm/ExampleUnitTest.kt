@@ -12,6 +12,8 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
+        val string : String = "HOW KNOWLEDGEABLE WAS INSTRUCTOR MURIAN SONG OF THE SUBJECT MATTER?"
+        println(string.toLowerCase())
         assertEquals(4, 2 + 2)
     }
 }
