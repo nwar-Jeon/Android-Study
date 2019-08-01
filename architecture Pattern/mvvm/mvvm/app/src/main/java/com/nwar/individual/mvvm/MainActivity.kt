@@ -8,11 +8,11 @@ import com.nwar.individual.mvvm.databinding.ActivityMainBinding
 import com.nwar.individual.mvvm.viewModel.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {
+    val viewModel by lazy { MainActivityViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding : ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        val viewModel = MainActivityViewModel()
         binding.setVariable(BR.viewmodel, viewModel)
     }
 }
