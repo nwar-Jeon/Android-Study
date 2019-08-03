@@ -312,7 +312,3 @@ class CustomObject : BaseObservable(){
 데이터 바인딩은 리소스 ID를 포함하는 모듈 패키지에 BR 클래스를 생성한다.
 
 데이터 클래스의 기본 클래스를 변경할 수 없는 경우, PropertyChangeRegistry개체를 통해 수신자에게 효율적으로 등록, 통지 가능.
-
-
-
-### 2-way binding
