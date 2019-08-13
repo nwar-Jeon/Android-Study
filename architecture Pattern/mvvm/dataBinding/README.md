@@ -312,3 +312,50 @@ class CustomObject : BaseObservable(){
 데이터 바인딩은 리소스 ID를 포함하는 모듈 패키지에 BR 클래스를 생성한다.
 
 데이터 클래스의 기본 클래스를 변경할 수 없는 경우, PropertyChangeRegistry개체를 통해 수신자에게 효율적으로 등록, 통지 가능.
+
+
+
+### 2-Way binding
+
++ Model의 변화를 UI(View)에게도 전달하지만,
+
++ UI(View)의 변화를 Model에 전달하기도 하는 것. (InverseBinding)
+
+```kotlin
+//...Activity.class
+binding.setModel(Model())
+
+//Model.class
+class Model(){
+  val text = ObservableField<String>()
+}
+```
+
+
+
+```xml
+<layout>
+	<data>
+    <variable>
+      name="model" type="...Model"
+    </variable>
+  </data>
+	<EditText
+  	        android:text="@={model.text}"/>
+	<!-- 2-way binding에서는 @=를 사용. -->
+</layout>
+```
+
+
+
+```kotlin
+model.text.set("")
+```
+
+위의 text 설정 코드를 통해 model의 데이터를 바꿔 edittext의 text를 바꿀 수 있지만,
+
+2-way binding을 설정했기 때문에 edittext에 텍스트를 입력하면, model의 text의 값이 바뀜.
+
+model의 데이터를 view가 받아오기도 하고, view에서 바뀐 데이터를 model에 반영하기도 하기 때문에
+
+binding, inversebinding 양방향으로 바인딩하기 때문에 2-way binding이라고 부름.
