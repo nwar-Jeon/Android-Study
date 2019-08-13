@@ -359,3 +359,18 @@ model.text.set("")
 model의 데이터를 view가 받아오기도 하고, view에서 바뀐 데이터를 model에 반영하기도 하기 때문에
 
 binding, inversebinding 양방향으로 바인딩하기 때문에 2-way binding이라고 부름.
+
+
+
+```java
+@BindingAdapter("android:text")
+public static void setText(TextView textview, String text) {
+  textView.setVext(text);
+}
+
+@InverseBindingAdapter(attribute = "android:text")
+public static String getText(TextView textview) {
+  return textView.getText().toString();
+}
+```
+
