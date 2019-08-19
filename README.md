@@ -26,3 +26,12 @@
 
 + #### Room
 
+
+
+### Jetpack
+
+androidx.* 패키지 라이브러리로 구성
+
++ #### LifeCycle
+
++ 
