@@ -6,6 +6,8 @@
 
 + #### [MVVM](<https://github.com/nwar-Jeon/Android-Study/blob/master/architecture%20Pattern/mvvm/MVVM%20(Model-View-ViewModel).md>)
 
+  + [DataBinding](./architecture Pattern/mvvm/dataBinding)
+  
   
 
 ### Dependency Injection
@@ -14,7 +16,7 @@
 
 + #### Koin
 
-  
+  + [Koin 예제](./dependency Injection/koin/FindNewUsers-dev-koin)
 
 + #### Dagger
 
