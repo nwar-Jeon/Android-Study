@@ -49,3 +49,55 @@ public class LifecycleRegistry extends Lifecycle { // Lifecycle은 추상클래�
 ```
 
 ※ WeekReference? : 동작 진행 중, 중지 시에 액티비티의 자원을 GC로 소멸시키기 위함.
+
+
+
+### LifecycleObserver 구현
+
+```kotlin
+class Observer : LifecycleObserver {
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+  fun funtionName(){
+    ...
+  }
+}
+```
+
+LifecycleObserver를 구현한 클래스에서 @OnLifecycleEvent()를 이용해 액티비티의 상태를 감지해 메서드를 실행한다.
+
+위의 코드에서는 액티비티가 onCreate()상태가 되면, funtionName()을 실행한다.
+
+```java
+public abstract class Lifecycle {
+  ...
+  public enum Event {
+    ON_CREATE,
+    ON_START,
+    ON_RESUME,
+    ON_PAUSE,
+    ON_STOP,
+    ON_DESTROY,
+    ON_ANY;
+  } // 각 이름에 맞는 상태가 되었을 때, @OnLifecycleEvent() 어노테이션으로 실행할 메서드를 지정        할 수 있음.
+  
+  public enum State {
+    DESTROYED,
+    INITIALIZED,
+    CREATED,
+    STARTED,
+    RESUMED;
+    
+    public boolean isAtLeast(@NonNull State state) { return compareTo(state) >= 0; }
+  }
+}
+```
+
+
+
+
+
+![](./img/lifecycle_state.svg)
+
+
+
+동적으로 액티비티의 상태를 알 필요가 있을 때, Lifecycle.State의 값, isAtLeast메서드를 통해 비교할 수 있음.
