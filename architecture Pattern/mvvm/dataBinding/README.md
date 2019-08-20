@@ -122,7 +122,7 @@ data class ClassName(val examName : String)
 override fun onCreate(savedInstance : Bundle){
   super.onCreate(savedInstance)
   val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-  binding.user = User("Name!")
+  binding.name = ClassName("Name!")
 }
 ```
 
