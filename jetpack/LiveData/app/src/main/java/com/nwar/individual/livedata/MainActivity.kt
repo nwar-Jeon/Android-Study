@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding.activity = this
         binding.model = model
 
-        val observer = Observer<String>({it -> binding.textview.text = it})
+        val observer = Observer<String>{binding.textview.text = it}
 
         model.setObserve(this,observer)
     }
