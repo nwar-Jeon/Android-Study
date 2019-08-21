@@ -42,7 +42,7 @@ LiveData를 공부하기 위해서는, [LifeCycle](../Lifecycle)을 먼저 공�
 class CustomViewModel : ViewModel() {
   val data : MutableLiveData<String> by lazy {
     MutableLiveData<String>()
-  }
+  } // 1. LiveData 인스턴스 생성
 }
 
 class Activity : AppcompatActivity() {
@@ -56,10 +56,42 @@ class Activity : AppcompatActivity() {
     
   	val observer = Observer<String> {
     	it -> textView.text = it
-  	}
+  	} // 2. LiveData 객체 데이터 변경시 발생시킬 작업 정의
     
-    model.data.observe(this, observer)
+    model.data.observe(this, observer) // 3. LiveData 객체에 Observer 연결
   }
+}
+```
+
+
+
+### LiveData 값 변경
+
+setValue(T) / postValue(T)로 LiveData 내의 값을 변경할 수 있음.
+
+```kotlin
+button.setOnClickListener {
+  val text = edittext.text.toString()
+  model.data.value(text)
+}
+```
+
+setValue(T) : Main Thread에서 사용
+
+postValue(T) : 다중 스레드 환경일 때, Main Thread가 아닐 때 사용.
+
+
+
+### Transform LiveData
+
+LiveData 데이터를 발행하기 전, 데이터를 변경해 보내고 싶을 때에 사용함.
+
+```kotlin
+Transformations.map(LiveData<T>()) {
+  item -> returnType
+}
+Transformations.switchMap(LiveData<T>()){
+  item -> returnType
 }
 ```
 
