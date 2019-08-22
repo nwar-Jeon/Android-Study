@@ -36,4 +36,9 @@ androidx.* 패키지 라이브러리로 구성
 
 + #### [LifeCycle](./jetpack/Lifecycle)
 
-+ 
++ #### [LiveData](.jetpack/LiveData)
+
++ #### [Navigation](./jetpack/JetpackNavigation)
+
++ #### [ViewModel](./jetpack/AAC_ViewModel)
+
