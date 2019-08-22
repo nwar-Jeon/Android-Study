@@ -1,5 +1,7 @@
 # Room
 
+※ SQLite에서는 대소문자를 구분하지 않음.
+
 
 
 ### 구성요소
@@ -52,6 +54,52 @@ data class User(
 
 
 ```kotlin
-@Entity(tableName = "table")
+@Entity(tableName = "table", primaryKeys = arrayOf("id", "name"))
+// 테이블 이름을 table으로 지정하고, 복합 PK를 사용.
+data class User(
+  @ColumnInfo(name = "id")
+  val _id : Int, // 이 속성의 DB에서의 이름을 id로 지정
+  @ColumnInfo(name = "name")
+  val _name : String, // 이 속성의 DB에서의 이름을 name으로 지정. id와 name이 기본키.
+  @Ignore // 이 속성은 테이블 구성에서 제외됨.
+  val picture : Bitmap
+)
+
+@Entity(foreignKeys = arrayOf( // 외래키 설정. (Array<ForeignKey>)
+    ForeignKey(
+        entity = SecondEntity::class, // 참조할 테이블 설정
+        parentColumns = arrayOf("id"), // 참조할 테이블의 id 속성과
+        childColumns = arrayOf("foreign_id") // 아래 정의된 foreign_id 속성 연결.
+    )
+))
+data class ForeignEntity(
+    val foreign_id : Int,
+    val name : String
+)
+```
+
+
+
+## DAO(Data Access Object)
+
++ 추상클래스 혹은 인터페이스로 구현.
++ RoomDatabase를 인자로 받는 생성자를 만들어야 추상클래스로 구현 가능.
++ Room은 Query과정을 main 스레드에서 하지 않음.
+
+
+
+### Insert
+
+```kotlin
+interface InsertDao {
+    @Insert
+    fun insertItems(vararg items : User)
+
+    @Insert
+    fun insertTwoItem(item1 : User, item2 : User)
+
+    @Insert
+    fun insertItemAndItemList(item : User, items : List<User>)
+}
 ```
 
