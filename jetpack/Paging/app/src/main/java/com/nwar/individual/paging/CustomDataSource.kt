@@ -47,13 +47,3 @@ data class Data(val arrayList : ArrayList<String> = arrayListOf()){
     }
     val count = 0
 }
-
-class PDS<T>() : PositionalDataSource<T>(){
-    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<T>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<T>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-}
