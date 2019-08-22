@@ -4,9 +4,9 @@
 
 + #### MVP
 
-+ #### [MVVM](./architecture Pattern/mvvm)
++ #### [MVVM](./architecture_Pattern/mvvm)
 
-  + [DataBinding](./architecture Pattern/mvvm/dataBinding)
+  + [DataBinding](./architecture_Pattern/mvvm/dataBinding)
   
   
 
@@ -16,7 +16,7 @@
 
 + #### Koin
 
-  + [Koin 예제](./dependency Injection/koin/FindNewUsers-dev-koin)
+  + [Koin 예제](./dependency_Injection/koin/FindNewUsers-dev-koin)
 
 + #### Dagger
 
