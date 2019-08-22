@@ -7,7 +7,7 @@
 ### 구성요소
 
 + Database : 데이터베이스 보유자 (Entity 설정, 버전설정)
-+ Entity : Database 내의 테이블 (속성, 도메인 설정)
++ Entity : Database 내의 테이블 (속성, 도메인 설정 가능)
 + Dao: 데이터베이스에 엑세스하는데 사용되는 메서드 (SQL문 사용/Insert 등 어노테이션 사용)
 
 
@@ -83,7 +83,6 @@ data class ForeignEntity(
 ## DAO(Data Access Object)
 
 + 추상클래스 혹은 인터페이스로 구현.
-+ RoomDatabase를 인자로 받는 생성자를 만들어야 추상클래스로 구현 가능.
 + Room은 Query과정을 main 스레드에서 하지 않음.
 
 
@@ -103,3 +102,94 @@ interface InsertDao {
 }
 ```
 
+@Entity로 정의된 class, 그 class의 Collection, Array를 인자로 받을 수 있음.
+
+Long 혹은 Array< Long >, List< Long >을 반환함. (Insert한 값의 row Id)
+
+
+
+### Update
+
+```kotlin
+@Dao
+interface UpdateDao {
+    @Update
+    fun update(vararg items : User)
+}
+```
+
+return 값으로 Int, 변경된 행의 수를 받을 수 있음.
+
+
+
+### Delete
+
+```kotlin
+@Dao
+interface DeleteDao {
+    @Delete
+    fun delete(vararg items : User)
+}
+```
+
+return 값으로 Int, 삭제된 행의 수를 받을 수 있음.
+
+
+
+### Query
+
+DB 조회를 위함.
+
+```kotlin
+@Dao
+interface QueryDao {
+    @Query("SELECT * FROM USER") 
+    fun loadAll() : List<User> // User테이블에서 모든 튜플을 가져와 반환
+  
+    @Query("SELECT * FROM USER WHERE id > :_id")
+    fun loadAllById(_id : Int) : List<IdOnly> 
+       // User테이블에서 id값이 인자값을 초과한 튜플을 가져와 반환(쿼리문에 파라미터 사용.)
+  
+  	@Query("Select * FROM user WHERE id IN (:ids)")
+    fun loadFromRegions (ids : List<Int>) : LiveData<List<User>>
+   		//개수가 정해지지 않은 파라미터를 사용. LiveData로 자동변환해줌.
+  
+  	@Query("SELECT * FROM ForeignEntity" +
+            "INNER JOIN USER ON USER.id = ForeignEntity.id"
+            + "WHERE id > 100")
+    fun loadJoin() : List<User>
+    // 조인도 가능하다.
+}
+
+data class IdOnly(
+    val id : Int
+) // data class를 새로 정의해 data class 내부의 속성값만 가져올 수 있음.
+```
+
+
+
+## Database
+
+
+
+#### Converter
+
+Room은 기본타입과 wrapping 타입만 지원(Java기준.)하기 때문에, 그 외의 타입을 사용할 때는 Converter를 만들어야 함.
+
+```kotlin
+class TypeConverter() {
+    @TypeConverter
+    fun fromTimeStamp(value : Long?) = value?.let { 
+        Date(it)
+    }
+    
+    @TypeConverter
+    fun dateToTimeStamp(date : Date?) = date?.time
+}
+```
+
+
+
+
+
+[참고자료 : "해리의 유목코딩"  블로그]([https://medium.com/harrythegreat/%EB%B2%88%EC%97%AD-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-room-7%EA%B0%80%EC%A7%80-%EC%9C%A0%EC%9A%A9%ED%95%9C-%ED%8C%81-18252a941e27](https://medium.com/harrythegreat/번역-안드로이드-room-7가지-유용한-팁-18252a941e27))
