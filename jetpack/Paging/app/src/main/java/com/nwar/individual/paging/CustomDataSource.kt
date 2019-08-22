@@ -2,6 +2,8 @@ package com.nwar.individual.paging
 
 import androidx.paging.DataSource
 import androidx.paging.ItemKeyedDataSource
+import androidx.paging.PageKeyedDataSource
+import androidx.paging.PositionalDataSource
 
 class CustomDataSource<K,V>() : ItemKeyedDataSource<K,V>(){
 
@@ -35,6 +37,7 @@ data class Data(val arrayList : ArrayList<String> = arrayListOf()){
         }
     }
 
+
     fun ArrayList<String>.copyRange(start : Int, count : Int) : List<String>{
 
     }
@@ -43,4 +46,14 @@ data class Data(val arrayList : ArrayList<String> = arrayListOf()){
 
     }
     val count = 0
+}
+
+class PDS<T>() : PositionalDataSource<T>(){
+    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<T>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<T>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
