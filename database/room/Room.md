@@ -170,11 +170,24 @@ data class IdOnly(
 
 ## Database
 
+Datebase 어노테이션으로 entityies와 version을 설정할 수 있음.
+
+```kotlin
+@Database(entities = arrayOf(User::class), version = 1)
+abstract class CustomDatabase() : RoomDatabase(){
+  abstract fun userDao() : QueryDao
+}
+```
 
 
-#### Converter
+
+
+
+### Converter
 
 Room은 기본타입과 wrapping 타입만 지원(Java기준.)하기 때문에, 그 외의 타입을 사용할 때는 Converter를 만들어야 함.
+
+DAO, Entity, POJO, Entity의 특정 field, Dao의 특정 메서드, 파라미터에 넣을 수 있음.
 
 ```kotlin
 class TypeConverter() {
