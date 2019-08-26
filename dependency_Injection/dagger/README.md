@@ -10,3 +10,70 @@ Dependency Injection(의존성 주입)을 위한 Framework.
 
 외부에서 의존 객체. 즉 의존성을 가진 객체를 생성해 넘겨주는(설정자 혹은 생성자 등)것을 의미한다.
 
+![dagger](./img/dagger_image.jpeg)
+
+의존성 주입을 위해서, 객체를 생성하고 넘겨주는 외부의 무언가가 필요함.
+
+이 외부에서 넘겨주는 일을 DI Framework가 하는 일.
+
+Dagger에서는 이를 Component, Modelu이라고 부름.
+
+의존성이 있는 객체의 제어를 외부 Framework로 올리며 Ioc(Inversion of Control) 개념을 구현.
+
+![IOC_Container](./img/ioc_image.jpeg)
+
+
+
+### Why DI?
+
+의존성 파라미터를 생성자에 작성할 필요가 없음.
+
+Interface에 구현체를 교체하며 상황에 따른 메서드 본체를 바꿀 수 있음. 테스트에 용이.
+
+
+
+## Dagger 구성요소
+
+1. Inject
+2. Component
+3. Subcomponent
+4. Module
+5. Scope
+
+
+
+#### Inject
+
+Inject 어노테이션으로 의존성 주입을 요청. 연결된 Component가 Module로부터 객체를 생성해 넘겨줌.
+
+
+
+#### Component
+
+연결된 Module을 이용해 의존성 객체 생성, Inject로 요청받은 인스턴스에 생성한 객체를 주입.
+
+=> Inject가 의존성 주입을 요청하면, Module을 통해 객체생성, Inject를 요청한 인스턴스에 객체 주입.
+
+
+
+#### Subcomponent
+
+Component의 계층 관계. 내부클래스 방식의 하위계층 Component.
+
+Dagger의 주요 개념인 그래프를 형성. Subcomponent에서 먼저 의존성을 검색한 후, 부모로 올라가며 검색.
+
+
+
+#### Module
+
+Component에 연결되어 의존성 객체 생성.
+
+이후 Scope에 따라 관리도 할 수 있음.
+
+
+
+#### Scope
+
+생성된 객체의 생명주기 범위.
+
+안드로이드에서는 주로 Activity, Fragment 등의 생명주기와 맞춰 사용.
