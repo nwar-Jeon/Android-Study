@@ -2,6 +2,7 @@ package com.nwar.individual.dagger
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.nwar.individual.dagger.simpleExample.User
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,8 +18,6 @@ import org.junit.Assert.*
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.nwar.individual.dagger", appContext.packageName)
+        assertEquals(User(1000,"이름").toString(),com.nwar.individual.dagger.simpleExample.run().user.toString())
     }
 }

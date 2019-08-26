@@ -1,5 +1,7 @@
 package com.nwar.individual.dagger
 
+import com.nwar.individual.dagger.simpleExample.User
+import com.nwar.individual.dagger.simpleExample.run
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +14,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        assertEquals(run().user.toString(), User(1000,"이름").toString())
     }
 }

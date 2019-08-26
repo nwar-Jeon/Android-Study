@@ -93,7 +93,7 @@ Component에 연결되어 의존성 객체 생성.
 2. Module과 객체를 생성하는 메서드, Provider 구현하기
 3. Component interface 만들기. (최소 한 개의 추상메서드가 있어야 하며, 이 메서드로 의존성 주입이 필요한 객체를 반환하거나, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘겨야 함.)
 4. Inject를 통해 객체를 주입할 곳을 알리기.
-5. Component를 실행해 의존성을 주입하기.(Component interface가 DaggerXXX 이름으로 구현됨.)
+5. Component를 통해 의존성을 주입하기.(Component interface가 DaggerXXX 이름으로 구현됨.)
 
 
 
@@ -101,11 +101,13 @@ Component에 연결되어 의존성 객체 생성.
 
 ```gradle
 dependencies {
-  api 'com.google.dagger:dagger:2.x'
-  annotationProcessor 'com.google.dagger:dagger-compiler:2.x'
-  api 'com.google.dagger:dagger-android:2.x'
-	api 'com.google.dagger:dagger-android-support:2.x' // if you use the support libraries
-	annotationProcessor 'com.google.dagger:dagger-android-processor:2.x'
+	def dagger_verion = "최신 버전"
+	
+  api "com.google.dagger:dagger:${dagger_version}"
+  annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
+  api "com.google.dagger:dagger-android:${dagger_version}"
+	api "com.google.dagger:dagger-android-support:${dagger_version}" // if you use the support libraries
+	annotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
 }
 ```
 
@@ -140,8 +142,8 @@ Module 설정하기.
 의존성을 주입할 객체를 반환하거나①, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘기는 메서드 정의②.
 
 ```kotlin
-@Component()
-class UserComponent() {
+@Component(modules = arrayOf(UserMakerModule::class))
+interface UserComponent {
   fun make() : UserMaker // ①
   fun inject(userMaker : UserMaker) : Unit // ②
 }
@@ -152,6 +154,8 @@ class UserComponent() {
 ### 4. Inject를 통해 주입할 곳 알리기
 
 ```kotlin
+import javax.inject.Inject
+
 class @Inject UserMaker(user : User) {
   
 } // 생성자에 @Inject 어노테이션 명시
@@ -162,3 +166,20 @@ class UserMaker() {
 } // 필드에 @Inject 어노테이션 명시.
 ```
 
+
+
+### 5. Component를 통해 의존성을 주입하기.
+
+Dagger 라이브러리에서 @Component 어노테이션을 명시한 클래스를 DaggerXXX 형태로 구현해 주기 때문에 DaggerXXX를 통해 Component를 호출하면 된다.
+
+```kotlin
+println(DaggerUserComponent.make().toString()) // "1000 : 이름"
+
+val userMaker = UserMaker()
+DaggerUserComponent.inject(userMaker)
+println(userMaker.toString) // "1000 : 이름"
+```
+
+
+
+[참고 자료]([https://cmcmcmcm.blog/2017/07/27/didependency-injection-%EC%99%80-dagger2/](https://cmcmcmcm.blog/2017/07/27/didependency-injection-와-dagger2/))
