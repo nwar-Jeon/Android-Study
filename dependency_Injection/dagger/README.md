@@ -36,19 +36,20 @@ Interface에 구현체를 교체하며 상황에 따른 메서드 본체를 바�
 
 1. Inject
 2. Component
-3. Subcomponent
+   - Subcomponent
 4. Module
+5. Provider
 5. Scope
 
 
 
-#### Inject
+### Inject
 
 Inject 어노테이션으로 의존성 주입을 요청. 연결된 Component가 Module로부터 객체를 생성해 넘겨줌.
 
 
 
-#### Component
+### Component
 
 연결된 Module을 이용해 의존성 객체 생성, Inject로 요청받은 인스턴스에 생성한 객체를 주입.
 
@@ -64,7 +65,7 @@ Dagger의 주요 개념인 그래프를 형성. Subcomponent에서 먼저 의존
 
 
 
-#### Module
+### Module
 
 Component에 연결되어 의존성 객체 생성.
 
@@ -72,8 +73,24 @@ Component에 연결되어 의존성 객체 생성.
 
 
 
-#### Scope
+### Provider
+
+객체를 제공하기 위한 메서드에 사용하는 어노테이션.
+
+
+
+### Scope
 
 생성된 객체의 생명주기 범위.
 
 안드로이드에서는 주로 Activity, Fragment 등의 생명주기와 맞춰 사용.
+
+
+
+## 사용하기
+
+1. 의존성 
+2. Module과 객체를 생성하는 메서드, Provider 구현하기
+3. Component interface 만들기. (최소 한 개의 추상메서드가 있어야 하며, 이 메서드로 의존성 주입이 필요한 객체를 반환하거나, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘겨야 함.)
+4. Inject를 통해 객체를 주입할 곳을 알리기.
+5. Component를 실행해 의존성을 주입하기.(Component interface가 DaggerXXX 이름으로 구현됨.)
