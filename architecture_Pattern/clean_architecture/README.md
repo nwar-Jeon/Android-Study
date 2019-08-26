@@ -1,4 +1,4 @@
 # Clean Architecture
 
-![clean architecture img](../image/clean_architecture.png)
+![clean_architecture_img](../image/clean_architecture.png)
 
