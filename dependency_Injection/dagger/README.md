@@ -89,8 +89,76 @@ Component에 연결되어 의존성 객체 생성.
 
 ## 사용하기
 
-1. 의존성 
+1. 의존성 설정하기
 2. Module과 객체를 생성하는 메서드, Provider 구현하기
 3. Component interface 만들기. (최소 한 개의 추상메서드가 있어야 하며, 이 메서드로 의존성 주입이 필요한 객체를 반환하거나, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘겨야 함.)
 4. Inject를 통해 객체를 주입할 곳을 알리기.
 5. Component를 실행해 의존성을 주입하기.(Component interface가 DaggerXXX 이름으로 구현됨.)
+
+
+
+### 1. 의존성 설정하기
+
+```gradle
+dependencies {
+  api 'com.google.dagger:dagger:2.x'
+  annotationProcessor 'com.google.dagger:dagger-compiler:2.x'
+  api 'com.google.dagger:dagger-android:2.x'
+	api 'com.google.dagger:dagger-android-support:2.x' // if you use the support libraries
+	annotationProcessor 'com.google.dagger:dagger-android-processor:2.x'
+}
+```
+
+최신 버전은 [Dagger Github](https://github.com/google/dagger)에서 확인.
+
+
+
+### 2. Module과 Provider 구현하기
+
+```kotlin
+@Module
+class UserModule {
+  @Providers
+  fun providerUser() = User("이름", 1000)
+}
+
+//User.kt
+data class User(
+    val id : Int,
+    val name : String
+) {
+    override fun toString() = "$id : $name"
+}
+```
+
+
+
+### 3. Component interface 만들기
+
+Module 설정하기.
+
+의존성을 주입할 객체를 반환하거나①, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘기는 메서드 정의②.
+
+```kotlin
+@Component()
+class UserComponent() {
+  fun make() : UserMaker // ①
+  fun inject(userMaker : UserMaker) : Unit // ②
+}
+```
+
+
+
+### 4. Inject를 통해 주입할 곳 알리기
+
+```kotlin
+class @Inject UserMaker(user : User) {
+  
+} // 생성자에 @Inject 어노테이션 명시
+
+class UserMaker() {
+  @Inject
+ 	var user : User
+} // 필드에 @Inject 어노테이션 명시.
+```
+
