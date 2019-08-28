@@ -10,7 +10,7 @@ Dependency Injection(의존성 주입)을 위한 Framework.
 
 외부에서 의존 객체. 즉 의존성을 가진 객체를 생성해 넘겨주는(설정자 혹은 생성자 등)것을 의미한다.
 
-![dagger](./img/dagger_image.jpeg)
+![dagger](D:/Github/Android/Android-Study/dependency_Injection/dagger/img/dagger_image.jpeg)
 
 의존성 주입을 위해서, 객체를 생성하고 넘겨주는 외부의 무언가가 필요함.
 
@@ -20,7 +20,7 @@ Dagger에서는 이를 Component, Modelu이라고 부름.
 
 의존성이 있는 객체의 제어를 외부 Framework로 올리며 Ioc(Inversion of Control) 개념을 구현.
 
-![IOC_Container](./img/ioc_image.jpeg)
+![IOC_Container](D:/Github/Android/Android-Study/dependency_Injection/dagger/img/ioc_image.jpeg)
 
 
 
@@ -37,8 +37,8 @@ Interface에 구현체를 교체하며 상황에 따른 메서드 본체를 바�
 1. Inject
 2. Component
    - Subcomponent
-4. Module
-5. Provider
+3. Module
+4. Provider
 5. Scope
 
 
@@ -139,12 +139,11 @@ data class User(
 
 Module 설정하기.
 
-의존성을 주입할 객체를 반환하거나①, 멤버 파라미터로 의존성 주입을 시킬 객체를 넘기는 메서드 정의②.
+멤버 파라미터로 의존성 주입을 시킬 객체를 넘기는 메서드 정의②.
 
 ```kotlin
 @Component(modules = arrayOf(UserMakerModule::class))
 interface UserComponent {
-  fun make() : UserMaker // ①
   fun inject(userMaker : UserMaker) : Unit // ②
 }
 ```
@@ -155,10 +154,6 @@ interface UserComponent {
 
 ```kotlin
 import javax.inject.Inject
-
-class @Inject UserMaker(user : User) {
-  
-} // 생성자에 @Inject 어노테이션 명시
 
 class UserMaker() {
   @Inject
@@ -183,3 +178,13 @@ println(userMaker.toString) // "1000 : 이름"
 
 
 [참고 자료]([https://cmcmcmcm.blog/2017/07/27/didependency-injection-%EC%99%80-dagger2/](https://cmcmcmcm.blog/2017/07/27/didependency-injection-와-dagger2/))
+
+
+
+## 심화
+
+1. Subcomponent
+2. Scope
+3. Binds
+   - Multibinding
+4. Singleton
