@@ -8,7 +8,10 @@
 
   + [DataBinding](./architecture_Pattern/mvvm/dataBinding)
   
-  
+
++ #### [Clean Architecture](./architecture_Pattern/clean_architecture)
+
+  + [Clean Architecture 예제](https://github.com/sanogueralorenzo/Android-Kotlin-Clean-Architecture)
 
 ### Dependency Injection
 
