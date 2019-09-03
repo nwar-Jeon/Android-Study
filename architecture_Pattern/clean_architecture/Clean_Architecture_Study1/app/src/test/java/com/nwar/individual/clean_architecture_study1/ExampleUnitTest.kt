@@ -1,7 +1,9 @@
 package com.nwar.individual.clean_architecture_study1
 
+import androidx.lifecycle.ViewModelProviders
 import com.nwar.individual.clean_architecture_study1.domain.entity.User
 import com.nwar.individual.clean_architecture_study1.localData.getDummyData
+import com.nwar.individual.clean_architecture_study1.presenter.viewModel.MainViewModel
 import org.json.JSONObject
 import org.junit.Test
 
@@ -17,5 +19,12 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         val data = getDummyData()
         assertEquals(data, User(0,"user1",17))
+    }
+
+    @Test
+    fun getData_isCorrect(){
+        val viewModel = MainViewModel()
+        viewModel.getUserData()
+        assertEquals(viewModel.user.value?.id,0)
     }
 }
