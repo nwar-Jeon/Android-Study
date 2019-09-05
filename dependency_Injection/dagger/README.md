@@ -103,7 +103,7 @@ Component에 연결되어 의존성 객체 생성.
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-	def dagger_verion = "최신 버전"
+	def dagger_version = "최신 버전"
   implementation "com.google.dagger:dagger:${dagger_version}"
   kapt "com.google.dagger:dagger-compiler:${dagger_version}"
   implementation "com.google.dagger:dagger-android:${dagger_version}"
