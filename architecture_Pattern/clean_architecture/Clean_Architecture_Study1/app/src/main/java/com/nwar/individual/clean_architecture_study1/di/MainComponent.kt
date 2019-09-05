@@ -9,4 +9,5 @@ import dagger.Component
 ])
 interface MainComponent{
     fun inject(obj : MainActivity)
+    fun testInject() : ViewModelProvider.Factory
 }
