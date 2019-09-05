@@ -10,7 +10,7 @@ Dependency Injection(의존성 주입)을 위한 Framework.
 
 외부에서 의존 객체. 즉 의존성을 가진 객체를 생성해 넘겨주는(설정자 혹은 생성자 등)것을 의미한다.
 
-![dagger](D:/Github/Android/Android-Study/dependency_Injection/dagger/img/dagger_image.jpeg)
+![dagger](./img/dagger_image.jpeg)
 
 의존성 주입을 위해서, 객체를 생성하고 넘겨주는 외부의 무언가가 필요함.
 
@@ -20,7 +20,7 @@ Dagger에서는 이를 Component, Modelu이라고 부름.
 
 의존성이 있는 객체의 제어를 외부 Framework로 올리며 Ioc(Inversion of Control) 개념을 구현.
 
-![IOC_Container](D:/Github/Android/Android-Study/dependency_Injection/dagger/img/ioc_image.jpeg)
+![IOC_Container](./img/ioc_image.jpeg)
 
 
 
@@ -100,14 +100,15 @@ Component에 연결되어 의존성 객체 생성.
 ### 1. 의존성 설정하기
 
 ```gradle
+apply plugin: 'kotlin-kapt'
+
 dependencies {
 	def dagger_verion = "최신 버전"
-	
-  api "com.google.dagger:dagger:${dagger_version}"
-  annotationProcessor "com.google.dagger:dagger-compiler:${dagger_version}"
-  api "com.google.dagger:dagger-android:${dagger_version}"
-	api "com.google.dagger:dagger-android-support:${dagger_version}" // if you use the support libraries
-	annotationProcessor "com.google.dagger:dagger-android-processor:${dagger_version}"
+  implementation "com.google.dagger:dagger:${dagger_version}"
+  kapt "com.google.dagger:dagger-compiler:${dagger_version}"
+  implementation "com.google.dagger:dagger-android:${dagger_version}"
+  implementation "com.google.dagger:dagger-android-support:${dagger_version}" // if you use the support libraries
+  kapt "com.google.dagger:dagger-android-processor:${dagger_version}"
 }
 ```
 

@@ -1,11 +1,12 @@
 package com.nwar.individual.clean_architecture_study1.di
 
-import com.nwar.individual.clean_architecture_study1.domain.useCase.MainUseCase
+import androidx.lifecycle.ViewModelProvider
+import com.nwar.individual.clean_architecture_study1.presenter.userInterface.MainActivity
 import dagger.Component
 
-@Component(modules = arrayOf(
+@Component(modules = [
     MainModule::class
-))
+])
 interface MainComponent{
-    fun inject(useCase : MainUseCase)
+    fun inject(obj : MainActivity)
 }
