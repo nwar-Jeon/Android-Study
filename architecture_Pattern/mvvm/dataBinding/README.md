@@ -365,7 +365,7 @@ binding, inversebinding 양방향으로 바인딩하기 때문에 2-way binding�
 ```java
 @BindingAdapter("android:text")
 public static void setText(TextView textview, String text) {
-  textView.setVext(text);
+  textView.setText(text);
 }
 
 @InverseBindingAdapter(attribute = "android:text")
