@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 class FirstFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
@@ -14,6 +15,7 @@ class FirstFragment() : Fragment() {
         view.findViewById<Button>(R.id.button).setOnClickListener {
             it.findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
+        findNavController()
         return view
     }
 }
