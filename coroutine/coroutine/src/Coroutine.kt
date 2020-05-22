@@ -1,8 +1,19 @@
 import kotlinx.coroutines.*
 
 fun main() {
-    suspendExample()
+    
+}
 
+fun scopeTest() {
+    CoroutineScope(Dispatchers.Unconfined).launch {
+        println("first CoroutineScope : ${Thread.currentThread()}")
+        suspendTest1()
+    }
+    CoroutineScope(newSingleThreadContext("CustomThread2")).launch {
+        println("second CoroutineScope : ${Thread.currentThread()}")
+        suspendTest2()
+    }
+    Thread.sleep(20000L)
 }
 
 fun suspendExample() {
