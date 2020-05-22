@@ -6,89 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Material Default Button"
+        android:layout_marginTop="36dp"
+        android:hint="User Name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton2"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Outline Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="200dp"
+            android:layout_height="60dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton3"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Text Button"
+        android:layout_marginTop="36dp"
+        android:hint="PassWord"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="200dp"
+            android:layout_height="60dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton4"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Unelevated Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton3" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:insetTop="25dp"
-        android:padding="10dp"
-        android:text="Colored Button"
-        app:backgroundTint="#bc13a0"
-        app:backgroundTintMode="multiply"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton4" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Custom Material Button"
-        app:backgroundTint="#3f974b"
-        app:backgroundTintMode="multiply"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton8"
-        app:rippleColor="#ffee33"
-        app:strokeColor="#8edea7"
-        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

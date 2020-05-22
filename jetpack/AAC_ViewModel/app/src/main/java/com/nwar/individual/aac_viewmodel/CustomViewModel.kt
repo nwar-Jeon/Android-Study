@@ -1,6 +1,8 @@
 package com.nwar.individual.aac_viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-class CustomViewModel() : ViewModel() {
+class CustomViewModel(val str : String) : ViewModel() {
+    val string = MutableLiveData<String>().apply { value = str }
 }

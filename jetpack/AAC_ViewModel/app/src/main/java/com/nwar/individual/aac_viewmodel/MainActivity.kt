@@ -1,15 +1,25 @@
 package com.nwar.individual.aac_viewmodel
 
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.FragmentManager
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val model = ViewModelProviders.of(this)[CustomViewModel::class.java]
+        val firstFragment = FirstFragment()
+        val secondFragment = SecondFragment()
+        val manager = supportFragmentManager
+
+        findViewById<Button>(R.id.button).setOnClickListener {
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.fragment,secondFragment)
+            transaction.commit()
+        }
     }
 }
